@@ -21,6 +21,7 @@
         "singletonHost":             true,
         "readme":                   "https://github.com/husky-koglhof/ioBroker.rpi/blob/master/README.md",
         "icon":                     "rpi-monitor.png",
+        "type":                     "hardware",
         "extIcon":                  "https://raw.githubusercontent.com/husky-koglhof/ioBroker.rpi/master/admin/rpi-monitor.png"
     },
     "native": {
