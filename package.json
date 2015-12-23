@@ -13,7 +13,7 @@
     "versteckt <husky.koglhof@icloud.com>"
   ],
   "dependencies": {
-    "node-schedule": "^0.6.0"
+  	
   },
   "devDependencies": {
     "grunt": "^0.4.5",
