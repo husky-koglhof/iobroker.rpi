@@ -16,46 +16,46 @@ e.g. rpi.0.cpu
 
 Following Objects are available after selection:
 
-### **CPU**
+#### **CPU**
 
 - cpu_frequency
 - load1
 - load5
 - load15
 
-### **Raspberry (vcgencmd is required)**
+#### **Raspberry (vcgencmd is required)**
 
 - cpu_voltage
 - mem_arm
 - mem_gpu
 
-## **Memory**
+#### **Memory**
 
 - memory_available
 - memory_free
 - memory_total
 
-### **Network (eth0)**
+#### **Network (eth0)**
 - net_received
 - net_send
 
-### **SDCard**
+#### **SDCard**
 - sdcard_boot_total
 - sdcard_boot_used
 - sdcard_root_total
 - sdcard_root_used
 
-### **Swap**
+#### **Swap**
 - swap_total
 - swap_used
 
-### **Temperature**
+#### **Temperature**
 - soc_temp
 
-### **Uptime**
+#### **Uptime**
 - uptime
 
-### **WLAN**
+#### **WLAN**
 - wifi_received
 - wifi_send
 
