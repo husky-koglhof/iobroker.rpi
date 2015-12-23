@@ -1,0 +1,147 @@
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../../lib/css/themes/jquery-ui/redmond/jquery-ui.min.css"/>
+<script type="text/javascript" src="../../lib/js/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="../../socket.io/socket.io.js"></script>
+<script type="text/javascript" src="../../lib/js/jquery-ui-1.10.3.full.min.js"></script>
+
+<link rel="stylesheet" type="text/css" href="../../css/adapter.css"/>
+<script type="text/javascript" src="../../js/translate.js"></script>
+<script type="text/javascript" src="../../js/adapter-settings.js"></script>
+
+<style>
+    table {
+        border-collapse: collapse;
+    }
+    td.line{
+        border-top:1px solid black;
+    }
+</style>
+
+<script type="text/javascript">
+    changed = false;
+    systemDictionary = {
+        "OpenZWave adapter settings": {
+            "en": "RPI-Monitor Adapter settings",
+            "de": "RPI-Monitor Adapter-Einstellungen",
+            "ru": "Настройки ИРЦ-монитор адаптер"
+        }
+    };
+
+    // the function loadSettings has to exist ...
+    function load(settings, onChange) {
+        if (!settings) return;
+        changed = false;
+        for (var key in settings) {
+            setValue(key, settings[key]);
+        }
+    }
+    function getSettings() {
+        var obj = {};
+        $('.value').each(function () {
+            var $this = $(this);
+            var id = $this.attr('id');
+            if ($this.attr('type') == 'checkbox') {
+                obj[$this.attr('id')] = $this.prop('checked');
+            } else {
+                obj[$this.attr('id')] = $this.val();
+            }
+        });
+        return obj;
+    }
+    function save(callback) {
+        var obj = {};
+        $('.value').each(function () {
+            var $this = $(this);
+            if ($this.attr('type') == 'checkbox') {
+                obj[$this.attr('id')] = $this.prop('checked');
+            } else {
+                obj[$this.attr('id')] = $this.val();
+            }
+        });
+
+        $('#save').button("disable");
+        callback(obj);
+    }
+    function setValue(id, value) {
+        // example: select elements with id=key and class=value and insert value
+        if ($('#' + id + '.value').attr('type') == 'checkbox') {
+            $('#' + id + '.value').prop('checked', value).change(function() {
+                changed = true;
+                $('#save').button("enable");
+            });
+        } else {
+            $('#' + id + '.value').val(value).change(function() {
+                changed = true;
+                $('#save').button("enable");
+            }).keyup(function() {
+                // Chack that only numbers entered
+                if ($(this).hasClass('number')) {
+                    var val = $(this).val();
+                    if (val) {
+                        var newVal = '';
+                        for (var i = 0; i < val.length; i++) {
+                            if (val[i] >= '0' && val[i] <= '9') {
+                                newVal += val[i];
+                            }
+                        }
+                        if (val != newVal) $(this).val(newVal);
+                    }
+                }
+                changed = true;
+                $('#save').button("enable");
+            });
+        }
+    }
+
+</script>
+</head>
+<body>
+<div id="adapter-container">
+    <table><tr>
+        <td><img src="rpi-monitor.png" width="64" height="64"></td>
+        <td style="padding-top: 20px;padding-left: 10px"><h3 class="translate">RPI-Monitor Adapter settings</h3></td>
+    </tr></table>
+
+    <table>
+        <tbody>
+            <tr>
+                <td class="translate">CPU:</td>
+                <td><input class="value" id="c_cpu" type="checkbox"/></td>
+            </tr>
+            <tr>
+                <td class="translate">Raspberry:</td>
+                <td><input class="value" id="c_raspberry" type="checkbox"/></td>
+            </tr>
+            <tr>
+                <td class="translate">Memory:</td>
+                <td><input class="value" id="c_memory" type="checkbox"/></td>
+            </tr>
+            <tr>
+                <td class="translate">Network:</td>
+                <td><input class="value" id="c_network" type="checkbox"/></td>
+            </tr>
+            <tr>
+                <td class="translate">SDCard:</td>
+                <td><input class="value" id="c_sdcard" type="checkbox"/></td>
+            </tr>
+            <tr>
+                <td class="translate">Swap:</td>
+                <td><input class="value" id="c_swap" type="checkbox"/></td>
+            </tr>
+            <tr>
+                <td class="translate">Temperature:</td>
+                <td><input class="value" id="c_temperature" type="checkbox"/></td>
+            </tr>
+            <tr>
+                <td class="translate">Uptime:</td>
+                <td><input class="value" id="c_uptime" type="checkbox"/></td>
+            </tr>
+            <tr>
+                <td class="translate">WLAN:</td>
+                <td><input class="value" id="c_wlan" type="checkbox"/></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body></html>

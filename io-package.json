@@ -1,0 +1,170 @@
+{
+    "common": {
+        "name":                     "rpi",
+        "title":                    "RPI-Monitor",
+        "desc":                     "RPI-Monitor for ioBroker Installations",
+        "version":                  "0.0.1",
+        "mode":                     "daemon",
+        "platform":                 "javascript/Node.js",
+        "os":                       ["linux", "darwin"],
+        "loglevel":                 "info",
+        "keywords":                 ["ioBroker", "monitoring", "raspberry", "orangepi", "odroid", "bananapi"],
+        "main":                     "main.js",
+        "authors": [
+            "Christian Baumgartner", "husky-koglhof <husky.koglhof@icloud.com>"
+        ],
+        "license":                  "LGPL",
+        "singletonHost":             true,
+        "readme":                   "https://github.com/husky-koglhof/ioBroker.rpi/blob/master/README.md",
+        "icon":                     "zwave.png",
+        "extIcon":                  "https://raw.githubusercontent.com/husky-koglhof/ioBroker.rpi/master/admin/rpi-monitor.png",
+        "dependencies":             ["web"],
+        "onlyWWW":                  false,
+        "singleton":                true
+    },
+    "native": {
+        "c_cpu": true,
+        "c_raspberry": false,
+        "c_memory": true,
+        "c_network": true,
+        "c_sdcard": true,
+        "c_swap": true,
+        "c_temperature": true,
+        "c_uptime": true,
+        "c_wlan": true,
+        "cpu": {
+            "cpu_frequency": {
+                "command": "cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq",
+                "regexp": "(.*)",
+                "post": "$1/1000"
+            },
+            "load1,load5,load15": {
+                "command": "cat /proc/loadavg",
+                "regexp": "^(\\S+)\\s(\\S+)\\s(\\S+)",
+                "post": ""
+            },
+            "scaling_governor": {
+                "command": "cat /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor",
+                "regexp": "(.*)",
+                "post": ""
+            }
+        },
+        "raspberry": {
+            "cpu_voltage": {
+                "command": "vcgencmd measure_volts core",
+                "regexp": "(\\d+.\\d+)V",
+                "post": ""
+            },
+            "mem_arm": {
+                "command": "vcgencmd get_mem arm",
+                "regexp": "(\\d+)",
+                "post": ""
+            },
+            "mem_gpu": {
+                "command": "vcgencmd get_mem gpu",
+                "regexp": "(\\d+)",
+                "post": ""
+            }
+        },
+        "memory": {
+            "memory_total": {
+                "command": "cat /proc/meminfo",
+                "regexp": "MemTotal:\\s+(\\d+)",
+                "post": "$1/1024"
+            },
+            "memory_free": {
+                "command": "cat /proc/meminfo",
+                "regexp": "MemFree:\\s+(\\d+)",
+                "post": "$1/1024"
+            },
+            "memory_available": {
+                "command": "/usr/bin/free -mk",
+                "regexp": "^-\\/\\+ buffers\\/cache:\\s+\\d+\\s+(\\d+)",
+                "post": "$1/1024",
+                "multiline": true
+            }
+        },
+        "network": {
+            "net_received": {
+                "command": "cat /sys/class/net/eth0/statistics/rx_bytes",
+                "regexp": "(.*)",
+                "post": "$1*-1"
+            },
+            "net_send": {
+                "command": "cat /sys/class/net/eth0/statistics/tx_bytes",
+                "regexp": "(.*)",
+                "post": ""
+            }
+        },
+        "sdcard": {
+            "sdcard_root_total": {
+                "command": "df /",
+                "regexp": "\\S+\\s+(\\d+).*\\/$",
+                "post": "$1/1024",
+                "multiline": true
+            },
+            "sdcard_boot_total": {
+                "command": "df /boot",
+                "regexp": "\\S+\\s+(\\d+).*\\/boot$",
+                "post": "$1/1024",
+                "multiline": true
+            },
+            "sdcard_root_used": {
+                "command": "df /",
+                "regexp": "\\S+\\s+\\d+\\s+(\\d+).*\\/$",
+                "post": "$1/1024",
+                "multiline": true
+            },
+            "sdcard_boot_used": {
+                "command": "df /boot",
+                "regexp": "\\S+\\s+\\d+\\s+(\\d+).*\\/boot$",
+                "post": "$1/1024",
+                "multiline": true
+            }
+        },
+        "swap": {
+            "swap_total": {
+                "command": "cat /proc/meminfo",
+                "regexp": "SwapTotal:\\s+(\\d+)",
+                "post": "$1/1024",
+                "multiline": true
+            },
+            "swap_used": {
+                "command": "cat /proc/meminfo",
+                "regexp": "SwapFree:\\s+(\\d+)",
+                "post": "rpi.swap_total - ($1/1024)",
+                "multiline": true
+            }
+        },
+        "temperature": {
+            "soc_temp": {
+                "command": "cat /sys/devices/virtual/thermal/thermal_zone0/temp",
+                "regexp": "(.*)",
+                "post": "$1/1000"
+            }
+        },
+        "uptime": {
+            "uptime": {
+                "command": "cat /proc/uptime",
+                "regexp": "(^\\S+)",
+                "post": ""
+            }
+        },
+        "wlan": {
+            "wifi_received": {
+                "command": "cat /sys/class/net/wlan0/statistics/rx_bytes",
+                "regexp": "(.*)",
+                "post": "$1*-1"
+            },
+            "wifi_send": {
+                "command": "cat /sys/class/net/wlan0/statistics/tx_bytes",
+                "regexp": "(.*)",
+                "post": ""
+            }
+        }
+    },
+    "objects": [
+    ],
+    "instanceObjects": [
+    ]
+}
