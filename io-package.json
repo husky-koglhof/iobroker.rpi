@@ -2,7 +2,11 @@
     "common": {
         "name":                     "rpi",
         "title":                    "RPI-Monitor",
-        "desc":                     "RPI-Monitor for ioBroker Installations",
+        "desc":                     {
+			"en": "RPI-Monitor for ioBroker Installations",
+			"de": "RPI-Monitor für ioBroker",
+			"ru": "RPI-Монитор для ioBroker"
+		},
         "version":                  "0.0.1",
         "mode":                     "daemon",
         "platform":                 "javascript/Node.js",
@@ -13,14 +17,11 @@
         "authors": [
             "Christian Baumgartner", "husky-koglhof <husky.koglhof@icloud.com>"
         ],
-        "license":                  "LGPL",
+        "license":                  "MIT",
         "singletonHost":             true,
         "readme":                   "https://github.com/husky-koglhof/ioBroker.rpi/blob/master/README.md",
-        "icon":                     "zwave.png",
-        "extIcon":                  "https://raw.githubusercontent.com/husky-koglhof/ioBroker.rpi/master/admin/rpi-monitor.png",
-        "dependencies":             ["web"],
-        "onlyWWW":                  false,
-        "singleton":                true
+        "icon":                     "rpi-monitor.png",
+        "extIcon":                  "https://raw.githubusercontent.com/husky-koglhof/ioBroker.rpi/master/admin/rpi-monitor.png"
     },
     "native": {
         "c_cpu": true,
@@ -32,6 +33,7 @@
         "c_temperature": true,
         "c_uptime": true,
         "c_wlan": true,
+        "interval": 60000,
         "cpu": {
             "cpu_frequency": {
                 "command": "cat /sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq",

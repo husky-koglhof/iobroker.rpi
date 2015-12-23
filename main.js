@@ -1,14 +1,12 @@
 /**
  *      RPI-Monitor Adapter
  *
- *      License: GNU LGPL
+ *      License: MIT
  */
 
-var utils =             require(__dirname + '/lib/utils'); // Get common adapter utils
-var fs =                require('fs');
-var schedule =          require('node-schedule');
-
-var objects;
+var utils =    require(__dirname + '/lib/utils'); // Get common adapter utils
+var fs =       require('fs');
+var schedule = require('node-schedule');
 
 var adapter = utils.adapter({
     name: 'rpi',
@@ -23,12 +21,12 @@ var adapter = utils.adapter({
                     adapter.log.debug('Remove ' + id + ': ' + id);
 
                     adapter.delObject(id, function (res, err) {
-                        if (res != undefined && res != "Not exists") adapter.log.error("res from delObject: " + res);
-                        if (err != undefined) adapter.log.error("err from delObject: " + err);
+                        if (res !== undefined && res != "Not exists") adapter.log.error("res from delObject: " + res);
+                        if (err !== undefined) adapter.log.error("err from delObject: " + err);
                     });
                     adapter.deleteState(id, function (res, err) {
-                        if (res != undefined && res != "Not exists") adapter.log.error("res from deleteState: " + res);
-                        if (err != undefined) adapter.log.error("err from deleteState: " + err);
+                        if (res !== undefined && res != "Not exists") adapter.log.error("res from deleteState: " + res);
+                        if (err !== undefined) adapter.log.error("err from deleteState: " + err);
                     });
                 }
             });
@@ -58,25 +56,25 @@ var adapter = utils.adapter({
     },
 });
 
-var rpi = {};
-var table = {};
-
+var objects;
+var rpi     = {};
+var table   = {};
+var exec    = require('child_process').execSync;
+var config  = adapter.config;
 
 function main() {
     // TODO: Check which Objects we provide
-    var j = schedule.scheduleJob("* * * * *", function(){
-        adapter.log.info("start parsing");
-        parser();
-    });
+    setInterval(parser, adapter.config.interval || 60000);
+    parser();
 }
 
 function parser() {
-    var config = adapter.config;
 
-    var exec = require('child_process').execSync;
+    adapter.log.debug("start parsing");
 
     for (var c in config) {
         adapter.log.debug("PARSING: " + c);
+		
         if (c.indexOf("c_") !== 0 && config["c_" + c] === true) {
             table[c] = new Array(20);
             var o = config[c];
@@ -99,9 +97,9 @@ function parser() {
                     stdout = exec(command).toString();
                     adapter.log.debug("------------- " + stdout);
                 } catch (er) {
-                    console.error(er.stack)
+                    adapter.log.error(er.stack);
                     if (er.pid) console.log('%s (pid: %d) exited with status %d',
-                        er.file, er.pid, er.status)
+                        er.file, er.pid, er.status);
                 }
 
                 var match = regexp.exec(stdout);
@@ -136,22 +134,24 @@ function parser() {
             }
         }
     }
+
     // TODO: Parse twice to get post data and evaluate
-    for (var c in config) {
-        adapter.log.debug("CURRENT = " + c + " " + config["c_" + c])
+    for (c in config) {
+        adapter.log.debug("CURRENT = " + c + " " + config["c_" + c]);
         adapter.log.debug(c.indexOf("c_"));
         if (c.indexOf("c_") !== 0 && config["c_" + c]) {
             if (objects[c] === undefined) {
                 var stateObj = {
                     common: {
-                        name: c, // You can add here some description
-                        read: true,
-                        write: true,
-                        role: 'sensor',
+                        name:   c, // You can add here some description
+                        read:   true,
+                        write:  true,
+                        role:   'sensor'
                     },
-                    type: 'device',
-                    _id: c
+                    type:   'device',
+                    _id:    c
                 };
+
                 adapter.extendObject(c, stateObj);
             }
             var o = config[c];
@@ -164,7 +164,7 @@ function parser() {
                 var value;
 
                 var lname = i.split(",");
-                if (lname != undefined && lname.length > 1) {
+                if (lname !== undefined && lname.length > 1) {
                     for (var m = 0; m < lname.length; m++) {
                         var name = lname[m];
                         value = rpi[name];
