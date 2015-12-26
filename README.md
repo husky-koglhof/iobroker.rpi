@@ -2,55 +2,66 @@
 ioBroker RPI-Monitor Adapter
 ==============
 
-## Global Description
-RPI-Monitor Implementation for Integration into ioBroker
+RPI-Monitor implementation for integration into ioBroker
 
 ## Important Information
 Works only with node >= 0.12
 
 ## Installation
-After Installation you have to setup all needed Modules within
-Administration Site.
+After installation you have to configure all required modules via administration page.
 
 After start of iobroker.rpi, all selected modules generates
-an object Tree within ioBroker within rpi.<instance>.<modulename>
+an object tree in ioBroker within rpi.<instance>.<modulename>
 e.g. rpi.0.cpu
 
-Following Objects are available after selection:<br>
-<br><b>CPU</b><br>
-- cpu_frequency<br>
-- load1<br>
-- load5<br>
-- load15<br>
-<br><b>Raspberry (vcgencmd is needed)</b><br>
-- cpu_voltage<br>
-- mem_arm<br>
-- mem_gpu<br>
-<br><b>Memory</b><br>
-- memory_available<br>
-- memory_free<br>
-- memory_total<br>
-<br><b>Network (eth0)</b><br>
-- net_received<br>
-- net_send<br>
-<br><b>SDCard</b><br>
-- sdcard_boot_total<br>
-- sdcard_boot_used<br>
-- sdcard_root_total<br>
-- sdcard_root_used<br>
-<br><b>Swap</b><br>
-- swap_total<br>
-- swap_used<br>
-<br><b>Temperature</b><br>
-- soc_temp<br>
-<br><b>Uptime</b><br>
-- uptime<br>
-<br><b>WLAN</b><br>
-- wifi_received<br>
-- wifi_send<br>
+Following Objects are available after selection:
+
+#### **CPU**
+
+- cpu_frequency
+- load1
+- load5
+- load15
+
+#### **Raspberry (vcgencmd is required)**
+
+- cpu_voltage
+- mem_arm
+- mem_gpu
+
+#### **Memory**
+
+- memory_available
+- memory_free
+- memory_total
+
+#### **Network (eth0)**
+- net_received
+- net_send
+
+#### **SDCard**
+- sdcard_boot_total
+- sdcard_boot_used
+- sdcard_root_total
+- sdcard_root_used
+
+#### **Swap**
+- swap_total
+- swap_used
+
+#### **Temperature**
+- soc_temp
+
+#### **Uptime**
+- uptime
+
+#### **WLAN**
+- wifi_received
+- wifi_send
 
 ## Configuration
-### Within Administration you can select following Modules
+On configuration page you can select following modules:
+
 - CPU
 - Raspberry
 - Memory
@@ -77,3 +88,5 @@ Following Objects are available after selection:<br>
 ## License
 
 Copyright (c) 2015 husky-koglhof <husky.koglhof@icloud.com>
+
+MIT License
