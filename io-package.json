@@ -7,7 +7,7 @@
 			"de": "RPI-Monitor für ioBroker",
 			"ru": "RPI-Монитор для ioBroker"
 		},
-        "version":                  "0.0.1",
+        "version":                  "0.0.2",
         "mode":                     "daemon",
         "platform":                 "javascript/Node.js",
         "os":                       ["linux", "darwin"],
