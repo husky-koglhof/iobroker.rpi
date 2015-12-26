@@ -59,12 +59,24 @@ var adapter = utils.adapter({
 var objects;
 var rpi     = {};
 var table   = {};
-var exec    = require('child_process').execSync;
+var exec;
 var config  = adapter.config;
+var oldstyle = false;
 
 function main() {
     // TODO: Check which Objects we provide
     setInterval(parser, adapter.config.interval || 60000);
+
+    var version = process.version
+    var va = version.split(".");
+    if (va[0] == "v0" && va[1] == "10") {
+        adapter.log.debug("NODE Version = " + version + ", we need new exec-sync");
+        exec    = require('sync-exec');
+        oldstyle = true;
+    } else {
+        adapter.log.debug("NODE Version = " + version + ", we need new execSync");
+        exec    = require('child_process').execSync;
+    }
     parser();
 }
 
@@ -72,6 +84,10 @@ function parser() {
 
     adapter.log.debug("start parsing");
 
+    // Workaround, WebStorm
+    if (config == undefined) {
+        config = adapter.config;
+    }
     for (var c in config) {
         adapter.log.debug("PARSING: " + c);
 		
@@ -94,7 +110,11 @@ function parser() {
 
                 var stdout;
                 try {
-                    stdout = exec(command).toString();
+                    if (oldstyle) {
+                        stdout = exec(command).stdout;
+                    } else {
+                        stdout = exec(command).toString();
+                    }
                     adapter.log.debug("------------- " + stdout);
                 } catch (er) {
                     adapter.log.error(er.stack);

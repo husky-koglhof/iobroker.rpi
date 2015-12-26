@@ -82,6 +82,10 @@ On configuration page you can select following modules:
 
 ## Changelog
 
+### 0.0.2 (2015-12-26)
+ - (husky-koglhof) Workaround for node 0.10.x
+ - (bluefox) Some Fixes
+ 
 ### 0.0.1 (2015-12-23)
  - Initial commit. Alpha Version.
 

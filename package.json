@@ -1,7 +1,7 @@
 {
   "name": "iobroker.rpi",
   "description": "RPI-Monitor for ioBroker Installations",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines" : { 
 	"node" : ">=0.12" 
   },
@@ -13,7 +13,8 @@
     "versteckt <husky.koglhof@icloud.com>"
   ],
   "dependencies": {
-  	
+  	"sync-exec": "^0.6.2",
+    "node-schedule": "^0.6.0"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
