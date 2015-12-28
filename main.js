@@ -5,8 +5,6 @@
  */
 
 var utils =    require(__dirname + '/lib/utils'); // Get common adapter utils
-var fs =       require('fs');
-var schedule = require('node-schedule');
 
 var adapter = utils.adapter({
     name: 'rpi',
@@ -90,7 +88,7 @@ function parser() {
     }
     for (var c in config) {
         adapter.log.debug("PARSING: " + c);
-		
+
         if (c.indexOf("c_") !== 0 && config["c_" + c] === true) {
             table[c] = new Array(20);
             var o = config[c];
@@ -188,6 +186,16 @@ function parser() {
                     for (var m = 0; m < lname.length; m++) {
                         var name = lname[m];
                         value = rpi[name];
+
+                        // TODO: Check if value is number and format it 2 Digits
+                        if (!isNaN(value)) {
+                            value = parseFloat(value);
+                            var r = new RegExp(/^\d+\.\d+$/);
+                            if (r.exec(value)) {
+                                value = value.toFixed(2);
+                            }
+                        }
+
                         adapter.log.debug("MATCHING:" + value);
                         adapter.log.debug("NAME: " + name + " VALULE:" + value);
 
@@ -216,11 +224,20 @@ function parser() {
                     }
                 } else {
                     value = rpi[i];
-                    if (value !== undefined) {
+                    if (value !== undefined && value !== "" && value !== null) {
                         if (post.indexOf('$1') !== -1) {
                             adapter.log.debug("VALUE: " + value + " POST: " + post);
                             value = eval(post.replace('$1', value));
                         }
+                        // TODO: Check if value is number and format it 2 Digits
+                        if (!isNaN(value)) {
+                            value = parseFloat(value);
+                            var r = new RegExp(/^\d+\.\d+$/);
+                            if (r.exec(value)) {
+                                value = value.toFixed(2);
+                            }
+                        }
+
                         var objectName = adapter.name + "." + adapter.instance + "." + c + "." + i;
                         adapter.log.debug("SETSTATE FOR " + objectName + " VALUE = " + value);
                         if (objects[objectName] === undefined) {

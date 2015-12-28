@@ -79,9 +79,15 @@ On configuration page you can select following modules:
 ## Todo
 
 ## Tested Hardware
+ - Odroid C1
+ - Raspberry Pi 1
 
 ## Changelog
 
+### 0.0.3 (2015-12-28
+ - (husky-koglhof) Fixed value calc.
+   Set Value to 2 digits
+   
 ### 0.0.2 (2015-12-26)
  - (husky-koglhof) Workaround for node 0.10.x
  - (bluefox) Some Fixes
