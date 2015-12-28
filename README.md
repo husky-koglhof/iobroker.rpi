@@ -84,7 +84,7 @@ On configuration page you can select following modules:
 
 ## Changelog
 
-### 0.0.3 (2015-12-28
+### 0.0.3 (2015-12-28)
  - (husky-koglhof) Fixed value calc.
    Set Value to 2 digits
    
