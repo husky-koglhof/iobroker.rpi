@@ -227,7 +227,12 @@ function parser() {
                     if (value !== undefined && value !== "" && value !== null) {
                         if (post.indexOf('$1') !== -1) {
                             adapter.log.debug("VALUE: " + value + " POST: " + post);
-                            value = eval(post.replace('$1', value));
+                            try {
+                                value = eval(post.replace('$1', value));
+                            } catch (e) {
+                                adapter.log.error('Cannot evaluate: ' + post.replace('$1', value));
+                                value = NaN;
+                            }
                         }
                         // TODO: Check if value is number and format it 2 Digits
                         if (!isNaN(value)) {
