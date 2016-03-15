@@ -115,9 +115,11 @@ function parser() {
                     }
                     adapter.log.debug("------------- " + stdout);
                 } catch (er) {
-                    adapter.log.error(er.stack);
+                    adapter.log.debug(er.stack);
                     if (er.pid) console.log('%s (pid: %d) exited with status %d',
                         er.file, er.pid, er.status);
+                    // do not process if exec fails 
+                    continue;
                 }
 
                 var match = regexp.exec(stdout);
