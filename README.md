@@ -84,6 +84,10 @@ On configuration page you can select following modules:
 
 ## Changelog
 
+### 0.0.4 (2016-03-25)
+ - (bluefox) Try catch by eval
+   (bluefox) do not process if exec fails
+   
 ### 0.0.3 (2015-12-28)
  - (husky-koglhof) Fixed value calc.
    Set Value to 2 digits
