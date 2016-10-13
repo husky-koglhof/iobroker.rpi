@@ -1,7 +1,7 @@
 {
   "name": "iobroker.rpi",
   "description": "RPI-Monitor for ioBroker Installations",
-  "version": "0.0.4",
+  "version": "0.1.0",
   "engines" : { 
 	"node" : ">=0.12" 
   },
@@ -12,6 +12,9 @@
   "contributors": [
     "versteckt <husky.koglhof@icloud.com>"
   ],
+  "optionalDependencies": {
+    "rpi-gpio": "^0.7.0"
+  },
   "dependencies": {
   	"sync-exec": "^0.6.2"
   },

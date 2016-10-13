@@ -82,7 +82,19 @@ On configuration page you can select following modules:
  - Odroid C1
  - Raspberry Pi 1
 
+## GPIOs
+You can read and control GPIOs too.
+All what you need to do is to configure in the settings the GPIOs options (additional tab). 
+
+![GPIOs](img/pi3_gpio.png)
+
+After some ports are enabled following states appear in the object tree:
+- rpi.0.gpio.PORT.state
+
 ## Changelog
+
+### 0.1.0 (2016-10-13)
+ - (bluefox) implement GPIOs control
 
 ### 0.0.4 (2016-03-25)
  - (bluefox) Try catch by eval
