@@ -344,6 +344,7 @@ function syncPort(port, data, callback) {
                     common: {
                         name:  'GPIO ' + port,
                         type:  'boolean',
+                        role:  data.input ? 'indicator' : 'switch',
                         read:  data.input,
                         write: !data.input
                     },
@@ -399,6 +400,7 @@ function initPorts() {
     }
 
     if (adapter.config.gpios && adapter.config.gpios.length) {
+        var count = 0;
         for (var p = 0; p < adapter.config.gpios.length; p++) {
 
             if (!adapter.config.gpios[p]) continue;
@@ -410,22 +412,32 @@ function initPorts() {
                 if (adapter.config.gpios[p].input === 'false') adapter.config.gpios[p].input = false;
 
                 if (adapter.config.gpios[p].input) {
+                    count++;
                     (function (port){
-                        gpio.setup(port, gpio.DIR_IN, gpio.EDGE_BOTH, function () {
-                            readValue(port);
+                        gpio.setup(port, gpio.DIR_IN, gpio.EDGE_BOTH, function (err) {
+                            if (!err) {
+                                readValue(port);
+                            } else {
+                                adapter.log.error('Cannot setup port ' + port + ' as input: ' + err);
+                            }
+                            if (!--count) {
+                                adapter.log.debug('Register onchange handler');
+                                // register on change handler
+                                gpio.on('change', function (port, value) {
+                                    adapter.log.debug('GPIO change on port ' + port + ': ' + value);
+                                    adapter.setState('gpio.' + port + '.state', !!value, true);
+                                });
+                            }
                         });
                     })(p);
                 } else {
-                    gpio.setup(p, gpio.DIR_OUT);
+                    (function (port){
+                        gpio.setup(port, gpio.DIR_OUT, function (err) {
+                            if (err) adapter.log.error('Cannot setup port ' + port + ' as output: ' + err);
+                        });
+                    })(p);
                 }
             }
-        }
-        if (gpio && anyInputs) {
-            // register on change handler
-            gpio.on('change', function (port, value) {
-                adapter.log.debug('GPIO change on port ' + port + ': ' + value);
-                adapter.setState('gpio.' + port + '.state', !!value, true);
-            });
         }
     } else {
         adapter.log.info('GPIO ports are not configured');

@@ -7,12 +7,21 @@ RPI-Monitor implementation for integration into ioBroker
 ## Important Information
 Works only with node >= 0.12
 
+**ioBroker must run under root.**
+
 ## Installation
 After installation you have to configure all required modules via administration page.
 
 After start of iobroker.rpi, all selected modules generates
 an object tree in ioBroker within rpi.<instance>.<modulename>
 e.g. rpi.0.cpu
+
+Be sure, that python and build-essential are installed:
+
+```
+sudo apt-get update
+sudo apt-get install -y build-essential python
+```
 
 Following Objects are available after selection:
 
@@ -93,7 +102,7 @@ After some ports are enabled following states appear in the object tree:
 
 ## Changelog
 
-### 0.1.0 (2016-10-13)
+### 0.1.1 (2016-10-13)
  - (bluefox) implement GPIOs control
 
 ### 0.0.4 (2016-03-25)

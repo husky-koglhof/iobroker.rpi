@@ -7,7 +7,14 @@
 			"de": "RPI-Monitor für ioBroker",
 			"ru": "RPI-Монитор для ioBroker"
 		},
-        "version":                  "0.1.0",
+        "version":                  "0.1.1",
+        "news": {
+            "0.1.1": {
+                "en": "implement GPIOs control",
+                "de": "Implementiert die Steuerung von GPIOs",
+                "ru": "Добавлено управление GPIOs"
+            }
+        },
         "mode":                     "daemon",
         "platform":                 "javascript/Node.js",
         "os":                       ["linux", "darwin"],
@@ -23,10 +30,10 @@
         "icon":                     "rpi-monitor.png",
         "type":                     "hardware",
         "config":{
-            "minWidth":   470,
-            "width":      470,
-            "minHeight":  400,
-            "height":     400
+            "minWidth":   650,
+            "width":      700,
+            "minHeight":  600,
+            "height":     600
         },
         "extIcon":                  "https://raw.githubusercontent.com/husky-koglhof/ioBroker.rpi/master/admin/rpi-monitor.png"
     },
