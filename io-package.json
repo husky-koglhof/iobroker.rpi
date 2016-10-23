@@ -1,6 +1,6 @@
 {
     "common": {
-        "name":                     "rpi",
+        "name":                     "rpi2",
         "title":                    "RPI-Monitor",
         "desc":                     {
 			"en": "RPI-Monitor for ioBroker Installations",
@@ -26,7 +26,7 @@
         ],
         "license":                  "MIT",
         "singletonHost":             true,
-        "readme":                   "https://github.com/ioBroker/ioBroker.rpi/blob/master/README.md",
+        "readme":                   "https://github.com/ioBroker/ioBroker.rpi2/blob/master/README.md",
         "icon":                     "rpi.png",
         "type":                     "hardware",
         "config":{
@@ -35,7 +35,7 @@
             "minHeight":  600,
             "height":     600
         },
-        "extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.rpi/master/admin/rpi.png"
+        "extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.rpi2/master/admin/rpi.png"
     },
     "native": {
         "c_cpu": true,

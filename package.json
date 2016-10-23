@@ -1,5 +1,5 @@
 {
-  "name": "iobroker.rpi",
+  "name": "iobroker.rpi2",
   "description": "RPI-Monitor for ioBroker Installations",
   "version": "0.2.0",
   "engines" : { 
@@ -25,18 +25,18 @@
     "grunt-jscs": "^2.0.0",
     "grunt-http": "^1.6.0"
   },
-  "homepage": "https://github.com/ioBroker/ioBroker.rpi",
+  "homepage": "https://github.com/ioBroker/ioBroker.rpi2",
   "license": "MIT",
   "keywords": ["ioBroker", "monitoring", "raspberry", "orangepi", "odroid", "bananapi"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ioBroker/ioBroker.rpi"
+    "url": "https://github.com/ioBroker/ioBroker.rpi2"
   },
   "os": [
     "linux"
   ],
   "bugs": {
-    "url": "https://github.com/ioBroker/ioBroker.rpi/issues"
+    "url": "https://github.com/ioBroker/ioBroker.rpi2/issues"
   },
   "main": "main.js",
   "readmeFilename": "README.md"

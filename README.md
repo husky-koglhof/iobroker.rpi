@@ -2,17 +2,17 @@
 ioBroker RPI-Monitor Adapter
 ==============
 
-[![NPM version](http://img.shields.io/npm/v/iobroker.rpi.svg)](https://www.npmjs.com/package/iobroker.rpi)
-[![Downloads](https://img.shields.io/npm/dm/iobroker.rpi.svg)](https://www.npmjs.com/package/iobroker.rpi)
+[![NPM version](http://img.shields.io/npm/v/iobroker.rpi.svg)](https://www.npmjs.com/package/iobroker.rpi2)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.rpi.svg)](https://www.npmjs.com/package/iobroker.rpi2)
 
-[![NPM](https://nodei.co/npm/iobroker.rpi.png?downloads=true)](https://nodei.co/npm/iobroker.rpi/)
+[![NPM](https://nodei.co/npm/iobroker.rpi.png?downloads=true)](https://nodei.co/npm/iobroker.rpi2/)
 
-RPI-Monitor implementation for integration into ioBroker
+RPI-Monitor implementation for integration into ioBroker. It is the same implementation as for iobroker.rpi, but with GPIOs.
 
 ## Important Information
 Works only with node >= 0.12
 
-**ioBroker must run under root.**
+**ioBroker must run under root to may control GPIOs.**
 
 ## Installation
 After installation you have to configure all required modules via administration page.
@@ -130,6 +130,6 @@ After some ports are enabled following states appear in the object tree:
 
 ## License
 
-Copyright (c) 2015 husky-koglhof <husky.koglhof@icloud.com>
+Copyright (c) 2015-2016 husky-koglhof <husky.koglhof@icloud.com>
 
 MIT License
