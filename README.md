@@ -1,6 +1,11 @@
-![Logo](admin/rpi-monitor.png)
+![Logo](admin/rpi.png)
 ioBroker RPI-Monitor Adapter
 ==============
+
+[![NPM version](http://img.shields.io/npm/v/iobroker.rpi.svg)](https://www.npmjs.com/package/iobroker.rpi)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.rpi.svg)](https://www.npmjs.com/package/iobroker.rpi)
+
+[![NPM](https://nodei.co/npm/iobroker.rpi.png?downloads=true)](https://nodei.co/npm/iobroker.rpi/)
 
 RPI-Monitor implementation for integration into ioBroker
 
@@ -101,6 +106,9 @@ After some ports are enabled following states appear in the object tree:
 - rpi.0.gpio.PORT.state
 
 ## Changelog
+
+### 0.2.0 (2016-10-23)
+ - (bluefox) just version change
 
 ### 0.1.1 (2016-10-13)
  - (bluefox) implement GPIOs control

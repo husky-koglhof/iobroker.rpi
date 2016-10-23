@@ -7,9 +7,9 @@
 			"de": "RPI-Monitor für ioBroker",
 			"ru": "RPI-Монитор для ioBroker"
 		},
-        "version":                  "0.1.1",
+        "version":                  "0.2.0",
         "news": {
-            "0.1.1": {
+            "0.2.0": {
                 "en": "implement GPIOs control",
                 "de": "Implementiert die Steuerung von GPIOs",
                 "ru": "Добавлено управление GPIOs"
@@ -26,8 +26,8 @@
         ],
         "license":                  "MIT",
         "singletonHost":             true,
-        "readme":                   "https://github.com/husky-koglhof/ioBroker.rpi/blob/master/README.md",
-        "icon":                     "rpi-monitor.png",
+        "readme":                   "https://github.com/ioBroker/ioBroker.rpi/blob/master/README.md",
+        "icon":                     "rpi.png",
         "type":                     "hardware",
         "config":{
             "minWidth":   650,
@@ -35,7 +35,7 @@
             "minHeight":  600,
             "height":     600
         },
-        "extIcon":                  "https://raw.githubusercontent.com/husky-koglhof/ioBroker.rpi/master/admin/rpi-monitor.png"
+        "extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.rpi/master/admin/rpi.png"
     },
     "native": {
         "c_cpu": true,

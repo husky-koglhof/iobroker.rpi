@@ -1,7 +1,7 @@
 {
   "name": "iobroker.rpi",
   "description": "RPI-Monitor for ioBroker Installations",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "engines" : { 
 	"node" : ">=0.12" 
   },
@@ -23,24 +23,20 @@
     "grunt-replace": "^0.9.3",
     "grunt-contrib-jshint": "^0.11.2",
     "grunt-jscs": "^2.0.0",
-    "grunt-http": "^1.6.0",
-    "grunt-contrib-clean": "^0.6.0",
-    "grunt-contrib-compress": "^0.13.0",
-    "grunt-contrib-copy": "^0.8.0",
-    "grunt-exec": "^0.4.6"
+    "grunt-http": "^1.6.0"
   },
-  "homepage": "https://github.com/husky-koglhof/ioBroker.rpi",
+  "homepage": "https://github.com/ioBroker/ioBroker.rpi",
   "license": "MIT",
   "keywords": ["ioBroker", "monitoring", "raspberry", "orangepi", "odroid", "bananapi"],
   "repository": {
     "type": "git",
-    "url": "https://github.com/husky-koglhof/ioBroker.rpi"
+    "url": "https://github.com/ioBroker/ioBroker.rpi"
   },
   "os": [
     "linux"
   ],
   "bugs": {
-    "url": "https://github.com/husky-koglhof/ioBroker.rpi/issues"
+    "url": "https://github.com/ioBroker/ioBroker.rpi/issues"
   },
   "main": "main.js",
   "readmeFilename": "README.md"
