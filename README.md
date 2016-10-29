@@ -2,10 +2,10 @@
 ioBroker RPI-Monitor Adapter
 ==============
 
-[![NPM version](http://img.shields.io/npm/v/iobroker.rpi.svg)](https://www.npmjs.com/package/iobroker.rpi2)
-[![Downloads](https://img.shields.io/npm/dm/iobroker.rpi.svg)](https://www.npmjs.com/package/iobroker.rpi2)
+[![NPM version](http://img.shields.io/npm/v/iobroker.rpi2.svg)](https://www.npmjs.com/package/iobroker.rpi2)
+[![Downloads](https://img.shields.io/npm/dm/iobroker.rpi2.svg)](https://www.npmjs.com/package/iobroker.rpi2)
 
-[![NPM](https://nodei.co/npm/iobroker.rpi.png?downloads=true)](https://nodei.co/npm/iobroker.rpi2/)
+[![NPM](https://nodei.co/npm/iobroker.rpi2.png?downloads=true)](https://nodei.co/npm/iobroker.rpi2/)
 
 RPI-Monitor implementation for integration into ioBroker. It is the same implementation as for iobroker.rpi, but with GPIOs.
 
