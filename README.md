@@ -107,9 +107,12 @@ After some ports are enabled following states appear in the object tree:
 
 ## Changelog
 
+### 0.2.1 (2016-10-29)
+ - (bluefox) fix start of adapter
+
 ### 0.2.0 (2016-10-23)
  - (bluefox) just version change
-
+ 
 ### 0.1.1 (2016-10-13)
  - (bluefox) implement GPIOs control
 

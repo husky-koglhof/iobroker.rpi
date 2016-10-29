@@ -8,7 +8,7 @@ var utils   = require(__dirname + '/lib/utils'); // Get common adapter utils
 var gpio;
 
 var adapter = utils.adapter({
-    name: 'rpi',
+    name: 'rpi2',
 
     ready: function () {
         if (adapter.config.forceinit) {

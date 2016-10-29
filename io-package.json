@@ -7,8 +7,13 @@
 			"de": "RPI-Monitor für ioBroker",
 			"ru": "RPI-Монитор для ioBroker"
 		},
-        "version":                  "0.2.0",
+        "version":                  "0.2.1",
         "news": {
+            "0.2.1": {
+                "en": "fix start of adapter",
+                "de": "Korrigiert Adapterstart",
+                "ru": "Исправлен старт драйвера"
+            },
             "0.2.0": {
                 "en": "implement GPIOs control",
                 "de": "Implementiert die Steuerung von GPIOs",
