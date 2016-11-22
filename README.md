@@ -107,6 +107,8 @@ After some ports are enabled following states appear in the object tree:
 
 The numeration of ports is BCM (BroadComm pins on chip). You can get the enumeration with ```gpio readall```.
 For instance PI2:
+
+```
 +-----+-----+---------+------+---+---Pi 2---+---+------+---------+-----+-----+
 | BCM | wPi |   Name  | Mode | V | Physical | V | Mode | Name    | wPi | BCM |
 +-----+-----+---------+------+---+----++----+---+------+---------+-----+-----+
@@ -133,11 +135,12 @@ For instance PI2:
 +-----+-----+---------+------+---+----++----+---+------+---------+-----+-----+
 | BCM | wPi |   Name  | Mode | V | Physical | V | Mode | Name    | wPi | BCM |
 +-----+-----+---------+------+---+---Pi 2---+---+------+---------+-----+-----+
+```
 
 ## Changelog
 
 ### 0.2.2 (2016-11-22)
- - (fsjoke) Use BCM enumeration
+ - (bluefox) Use BCM enumeration
 
 ### 0.2.1 (2016-10-29)
  - (bluefox) fix start of adapter
