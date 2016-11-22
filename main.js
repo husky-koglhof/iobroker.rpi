@@ -221,6 +221,7 @@ function parser() {
             }
             var o = config[c];
             for (var i in o) {
+                if (!o.hasOwnProperty(i)) continue;
                 var object = o[i];
                 var command = object.command;
                 var post = object.post;
@@ -313,7 +314,11 @@ function parser() {
                             ack: true
                         });
                     } else {
-                        adapter.log.error('No Value found for ' + i);
+                        if (i === 'wifi_send' || i === 'wifi_received') {
+                            adapter.log.debug('No Value found for ' + i);
+                        } else {
+                            adapter.log.error('No Value found for ' + i);
+                        }
                     }
                 }
             }
@@ -393,6 +398,7 @@ function initPorts() {
     if (anyEnabled) {
         try {
             gpio = require('rpi-gpio');
+            gpio.setMode(gpio.MODE_BCM);
         } catch (e) {
             gpio = null;
             console.error('cannot use GPIO: ' + e);

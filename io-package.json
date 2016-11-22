@@ -7,8 +7,13 @@
 			"de": "RPI-Monitor für ioBroker",
 			"ru": "RPI-Монитор для ioBroker"
 		},
-        "version":                  "0.2.1",
+        "version":                  "0.2.2",
         "news": {
+            "0.2.2": {
+                "en": "Use BCM enumeration",
+                "de": "Benutze BCM Numerierung",
+                "ru": "Используется BCM нумерация"
+            },
             "0.2.1": {
                 "en": "fix start of adapter",
                 "de": "Korrigiert Adapterstart",
