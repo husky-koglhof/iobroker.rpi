@@ -7,8 +7,13 @@
 			"de": "RPI-Monitor für ioBroker",
 			"ru": "RPI-Монитор для ioBroker"
 		},
-        "version":                  "0.2.2",
+        "version":                  "0.3.0",
         "news": {
+            "0.3.0": {
+                "en": "Add GPIO direction indication",
+                "de": "GPIO Richtung States hinzugefügt",
+                "ru": "Добавлены состояния для индикации направления GPIO"
+            },
             "0.2.2": {
                 "en": "Use BCM enumeration",
                 "de": "Benutze BCM Numerierung",

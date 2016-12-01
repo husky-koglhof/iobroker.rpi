@@ -139,6 +139,9 @@ For instance PI2:
 
 ## Changelog
 
+### 0.2.2 (2016-12-01)
+ - (bluefox) Add GPIO direction indication
+
 ### 0.2.2 (2016-11-22)
  - (bluefox) Use BCM enumeration
 
