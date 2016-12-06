@@ -44,6 +44,7 @@
         "readme":                   "https://github.com/ioBroker/ioBroker.rpi2/blob/master/README.md",
         "icon":                     "rpi.png",
         "type":                     "hardware",
+	    "enabled":					true, 
         "config":{
             "minWidth":   650,
             "width":      700,
