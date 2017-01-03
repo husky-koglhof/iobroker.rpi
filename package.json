@@ -2,8 +2,8 @@
   "name": "iobroker.rpi2",
   "description": "RPI-Monitor for ioBroker Installations",
   "version": "0.3.0",
-  "engines" : { 
-	"node" : ">=0.12" 
+  "engines" : {
+	"node" : ">=0.12"
   },
   "author": {
     "name": "husky-koglhof",
@@ -39,5 +39,8 @@
     "url": "https://github.com/ioBroker/ioBroker.rpi2/issues"
   },
   "main": "main.js",
+  "scripts": {
+    "test": "node node_modules/mocha/bin/mocha"
+  },
   "readmeFilename": "README.md"
 }

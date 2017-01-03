@@ -3,3 +3,6 @@ templates
 .gitignore
 .idea
 tasks
+test
+.travis.yml
+appveyor.yml
