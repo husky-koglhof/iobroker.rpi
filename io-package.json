@@ -32,7 +32,7 @@
         },
         "mode":                     "daemon",
         "platform":                 "javascript/Node.js",
-        "os":                       ["linux", "darwin"],
+        "os":                       ["linux"],
         "loglevel":                 "info",
         "keywords":                 ["ioBroker", "monitoring", "raspberry", "orangepi", "odroid", "bananapi", "gpio"],
         "main":                     "main.js",
@@ -44,7 +44,7 @@
         "readme":                   "https://github.com/ioBroker/ioBroker.rpi2/blob/master/README.md",
         "icon":                     "rpi.png",
         "type":                     "hardware",
-	    "enabled":					true, 
+	    "enabled":					true,
         "config":{
             "minWidth":   650,
             "width":      700,
