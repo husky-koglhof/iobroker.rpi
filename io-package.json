@@ -7,8 +7,13 @@
 			"de": "RPI-Monitor für ioBroker",
 			"ru": "RPI-Монитор для ioBroker"
 		},
-        "version":                  "0.3.0",
+        "version":                  "0.3.1",
         "news": {
+			"0.3.1": {
+                "en": "Fixup swap_used calculation.",
+                "de": "Korrigiere swap_used Kalkulation",
+                "ru": "Исправлено вычисление swap_used"
+            },
             "0.3.0": {
                 "en": "Add GPIO direction indication",
                 "de": "GPIO Richtung States hinzugefügt",

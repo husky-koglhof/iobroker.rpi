@@ -139,6 +139,9 @@ For instance PI2:
 
 ## Changelog
 
+### 0.3.1 (2017-01-11)
+ - (olifre) Fixup swap_used calculation.
+ 
 ### 0.2.2 (2016-12-01)
  - (bluefox) Add GPIO direction indication
 
