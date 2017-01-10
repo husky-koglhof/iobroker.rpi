@@ -164,7 +164,7 @@
             "swap_used": {
                 "command": "cat /proc/meminfo",
                 "regexp": "SwapFree:\\s+(\\d+)",
-                "post": "rpi.swap_total - ($1/1024)",
+                "post": "(rpi.swap_total - $1)/1024",
                 "multiline": true
             }
         },
