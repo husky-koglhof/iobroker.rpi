@@ -8,7 +8,7 @@ var utils   = require(__dirname + '/lib/utils'); // Get common adapter utils
 var gpio;
 
 var adapter = utils.adapter({
-    name: 'rpi',
+    name: 'rpi2',
 
     ready: function () {
         if (adapter.config.forceinit) {
@@ -221,6 +221,7 @@ function parser() {
             }
             var o = config[c];
             for (var i in o) {
+                if (!o.hasOwnProperty(i)) continue;
                 var object = o[i];
                 var command = object.command;
                 var post = object.post;
@@ -313,7 +314,11 @@ function parser() {
                             ack: true
                         });
                     } else {
-                        adapter.log.error('No Value found for ' + i);
+                        if (i === 'wifi_send' || i === 'wifi_received') {
+                            adapter.log.debug('No Value found for ' + i);
+                        } else {
+                            adapter.log.error('No Value found for ' + i);
+                        }
                     }
                 }
             }
@@ -353,20 +358,61 @@ function syncPort(port, data, callback) {
                     },
                     type: 'state'
                 };
-                adapter.setObject('gpio.' + port + '.state', obj, callback);
+                adapter.setObject('gpio.' + port + '.state', obj, function () {
+                    syncPortDirection(port, data, callback);
+                });
             } else {
                 if (obj.common.read !== data.input) {
                     obj.common.read  = data.input;
                     obj.common.write = !data.input;
-                    adapter.setObject('gpio.' + port + '.state', obj, callback);
+                    adapter.setObject('gpio.' + port + '.state', obj, function () {
+                        syncPortDirection(port, data, callback);
+                    });
                 } else {
-                    if (callback) callback();
+                    syncPortDirection(port, data, callback);
                 }
             }
         } else {
             if (obj && obj.common) {
                 adapter.delObject('gpio.' + port + '.state', function () {
-                    adapter.delState('gpio.' + port + '.state', callback);
+                    adapter.delState('gpio.' + port + '.state', function () {
+                        syncPortDirection(port, data, callback);
+                    });
+                });
+            } else {
+                syncPortDirection(port, data, callback);
+            }
+        }
+    });
+}
+
+function syncPortDirection(port, data, callback) {
+    adapter.getObject('gpio.' + port + '.isInput', function (err, obj) {
+        if (data.enabled) {
+            if (err || !obj || !obj.common) {
+                obj = {
+                    common: {
+                        name:  'GPIO ' + port + ' direction',
+                        type:  'boolean',
+                        role:  'state',
+                        read:  true,
+                        write: false
+                    },
+                    native: {
+
+                    },
+                    type: 'state'
+                };
+                adapter.setObject('gpio.' + port + '.isInput', obj, function () {
+                    adapter.setState('gpio.' + port + '.isInput', !data.input, true, callback);
+                });
+            } else {
+                adapter.setState('gpio.' + port + '.isInput', data.input, true, callback);
+            }
+        } else {
+            if (obj && obj.common) {
+                adapter.delObject('gpio.' + port + '.isInput', function () {
+                    adapter.delState('gpio.' + port + '.isInput', callback);
                 });
             } else {
                 if (callback) callback();
@@ -393,6 +439,7 @@ function initPorts() {
     if (anyEnabled) {
         try {
             gpio = require('rpi-gpio');
+            gpio.setMode(gpio.MODE_BCM);
         } catch (e) {
             gpio = null;
             console.error('cannot use GPIO: ' + e);
