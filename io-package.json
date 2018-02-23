@@ -1,28 +1,67 @@
 {
     "common": {
-        "name":                     "rpi",
+        "name":                     "rpi2",
         "title":                    "RPI-Monitor",
         "desc":                     {
 			"en": "RPI-Monitor for ioBroker Installations",
 			"de": "RPI-Monitor für ioBroker",
 			"ru": "RPI-Монитор для ioBroker"
 		},
-        "version":                  "0.0.4",
+        "version":                  "0.3.2",
+        "news": {
+            "0.3.2": {
+                "en": "fixed Mem available readings on Stretch",
+                "de": "mem available bei strech gefixt",
+                "ru": "fixed Mem available readings on Stretch"
+            },
+			"0.3.1": {
+                "en": "Fixup swap_used calculation.",
+                "de": "Korrigiere swap_used Kalkulation",
+                "ru": "Исправлено вычисление swap_used"
+            },
+            "0.3.0": {
+                "en": "Add GPIO direction indication",
+                "de": "GPIO Richtung States hinzugefügt",
+                "ru": "Добавлены состояния для индикации направления GPIO"
+            },
+            "0.2.2": {
+                "en": "Use BCM enumeration",
+                "de": "Benutze BCM Numerierung",
+                "ru": "Используется BCM нумерация"
+            },
+            "0.2.1": {
+                "en": "fix start of adapter",
+                "de": "Korrigiert Adapterstart",
+                "ru": "Исправлен старт драйвера"
+            },
+            "0.2.0": {
+                "en": "implement GPIOs control",
+                "de": "Implementiert die Steuerung von GPIOs",
+                "ru": "Добавлено управление GPIOs"
+            }
+        },
         "mode":                     "daemon",
         "platform":                 "javascript/Node.js",
-        "os":                       ["linux", "darwin"],
+        "os":                       ["linux"],
         "loglevel":                 "info",
-        "keywords":                 ["ioBroker", "monitoring", "raspberry", "orangepi", "odroid", "bananapi"],
+        "keywords":                 ["ioBroker", "monitoring", "raspberry", "orangepi", "odroid", "bananapi", "gpio"],
         "main":                     "main.js",
         "authors": [
             "Christian Baumgartner", "husky-koglhof <husky.koglhof@icloud.com>"
         ],
         "license":                  "MIT",
         "singletonHost":             true,
-        "readme":                   "https://github.com/husky-koglhof/ioBroker.rpi/blob/master/README.md",
-        "icon":                     "rpi-monitor.png",
+        "readme":                   "https://github.com/ioBroker/ioBroker.rpi2/blob/master/README.md",
+        "icon":                     "rpi.png",
         "type":                     "hardware",
-        "extIcon":                  "https://raw.githubusercontent.com/husky-koglhof/ioBroker.rpi/master/admin/rpi-monitor.png"
+	    "enabled":					true,
+        "config":{
+            "minWidth":   650,
+            "width":      700,
+            "minHeight":  600,
+            "height":     600
+        },
+        "extIcon":                  "https://raw.githubusercontent.com/ioBroker/ioBroker.rpi2/master/admin/rpi.png"
     },
     "native": {
         "c_cpu": true,
@@ -81,8 +120,8 @@
                 "post": "$1/1024"
             },
             "memory_available": {
-                "command": "/usr/bin/free -mk",
-                "regexp": "^-\\/\\+ buffers\\/cache:\\s+\\d+\\s+(\\d+)",
+                "command": "cat /proc/meminfo",
+                "regexp": "MemAvailable:\\s+(\\d+)",
                 "post": "$1/1024",
                 "multiline": true
             }
@@ -135,7 +174,7 @@
             "swap_used": {
                 "command": "cat /proc/meminfo",
                 "regexp": "SwapFree:\\s+(\\d+)",
-                "post": "rpi.swap_total - ($1/1024)",
+                "post": "(rpi.swap_total - $1)/1024",
                 "multiline": true
             }
         },
@@ -164,7 +203,10 @@
                 "regexp": "(.*)",
                 "post": ""
             }
-        }
+        },
+        "gpios": [
+
+        ]
     },
     "objects": [
     ],
